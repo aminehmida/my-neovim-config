@@ -6,8 +6,15 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'kshenoy/vim-signature'
 Plug 'ntpeters/vim-better-whitespace'
-
+Plug 'majutsushi/tagbar'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 call plug#end()
+
+" colorscheme onehalflight
+" hi Normal ctermbg=none
+" let g:airline_theme='onehalflight'
 
 " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
 " (via http://stackoverflow.com/a/22253548/1626737)
@@ -45,8 +52,8 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
 " Map CTRL+v to vsplit and <leader>+CTRL+v to split
-:nnoremap <c-v> :vsplit 
-:nnoremap <leader><c-v> :split 
+:nnoremap <c-v> :vsplit
+:nnoremap <leader><c-v> :vsplit
 
 " Show hidden chars:
 setlocal list listchars=eol:¬,tab:├─,trail:~,extends:>,precedes:<,space:.
@@ -66,3 +73,23 @@ hi clear SpellBad
 hi SpellBad cterm=underline
 " autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType latex,tex,md,markdown setlocal spell
+
+" Toggle Tagbar with F8
+nmap <F8> :TagbarToggle<CR>
+
+" My custom color schema easy on the eyes
+hi Comment ctermfg=Gray
+hi Number ctermfg=Yellow
+hi String ctermfg=Blue
+hi NonText ctermfg=DarkGray
+
+" YCM autoclose preview window
+let g:ycm_autoclose_preview_window_after_completion=1
+
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
