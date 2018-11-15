@@ -8,14 +8,12 @@ Install [vim-plug for neovim](https://github.com/junegunn/vim-plug#neovim)
 
 Copy `init.vim` to `~/.config/nvim/init.vim` then open NeoVim and install plugins by typing `:PlugInstall`
 
-If you are an Arch user you can install `YouCompleteMe` for NeoVim plugin [from AUR](https://aur.archlinux.org/packages/neovim-youcompleteme-core-git/)
-
-If you use an other OS, please check the [official guide](https://github.com/Valloric/YouCompleteMe#installation)
-
 ## Features:
 
 ### Plugin list:
 
+* Valloric/YouCompleteMe
+* junegunn/fzf.vim
 * ervandew/supertab
 * SirVer/ultisnips
 * honza/vim-snippets
@@ -72,6 +70,7 @@ Spell check is enabled by default for latex and markdown files by default. Highl
 * `ctrl` + `v` types `:vsplit ` in normal mode.
 * `<leader>` + `ctrl` + `v` types `:split ` in normal mode.
 * `ctrl` + `j`, `k`, `l`, `h` navigates between split without pressing `ctrl` + `w` before hand.
+* `ctrl` + `p` open fzf file search
 
 ## Hacks:
 
