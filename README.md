@@ -12,7 +12,7 @@ Copy `init.vim` to `~/.config/nvim/init.vim` then open NeoVim and install plugin
 
 ### Plugin list:
 
-* Valloric/YouCompleteMe
+* All needed plugins to run [Server Language Protocol](https://microsoft.github.io/language-server-protocol/) for Go(lang) and Python.
 * junegunn/fzf.vim
 * ervandew/supertab
 * SirVer/ultisnips
@@ -67,16 +67,13 @@ Spell check is enabled by default for latex and markdown files by default. Highl
 
 ## Custom shortcuts:
 
-* `ctrl` + `v` types `:vsplit ` in normal mode.
-* `<leader>` + `ctrl` + `v` types `:split ` in normal mode.
 * `ctrl` + `j`, `k`, `l`, `h` navigates between split without pressing `ctrl` + `w` before hand.
 * `ctrl` + `p` open fzf file search
+*  `F10` show syntax highlighting group
 
 ## Hacks:
 
 All plugins are installed using [vim-plug](https://github.com/junegunn/vim-plug)
-
-[YouCompleteMe](https://github.com/Valloric/YouCompleteMe) plugin is installed externally because it require external library to function correctly.
 
 ## Thanks
 
