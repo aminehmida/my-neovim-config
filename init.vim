@@ -101,9 +101,6 @@ hi Number ctermfg=Yellow
 hi String ctermfg=Blue
 hi NonText ctermfg=DarkGray
 
-" YCM autoclose preview window
-let g:ycm_autoclose_preview_window_after_completion=1
-
 nmap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
@@ -114,6 +111,9 @@ endfunc
 
 " ctrl-p shortcut for fzf File command
 nnoremap <C-p> :Files<Cr>
+
+" Switch system clipboard/internal clipboard
+nnoremap <F11> :let &clipboard=(empty(&clipboard) ? 'unnamedplus' : '')<CR>:echo "clipboard set to '" . &clipboard . "'"<CR>
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"

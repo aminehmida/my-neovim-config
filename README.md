@@ -28,7 +28,7 @@ Leader key is set to `;`
 
 ### Clipboard:
 
-Neovim is set to used your default system clipboard.
+Neovim is set to used your default system clipboard. You can toggle between internal and system clipboard with <F11>.
 
 ### Line numbers:
 
@@ -69,7 +69,8 @@ Spell check is enabled by default for latex and markdown files by default. Highl
 
 * `ctrl` + `j`, `k`, `l`, `h` navigates between split without pressing `ctrl` + `w` before hand.
 * `ctrl` + `p` open fzf file search
-*  `F10` show syntax highlighting group
+* `F11` Toggle system clipboard and internal clipboard.
+* `F10` show syntax highlighting group (For debuging and themes).
 
 ## Hacks:
 
