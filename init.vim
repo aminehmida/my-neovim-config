@@ -6,6 +6,14 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'ryanolsonx/vim-lsp-python'
 
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+
+Plug 'itchyny/vim-cursorword'
+
+Plug 'hdima/python-syntax'
+
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
@@ -109,8 +117,8 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" ctrl-p shortcut for fzf File command
-nnoremap <C-p> :Files<Cr>
+" ctrl-p ripgrep working dir
+nnoremap <C-p> :Rg<Cr>
 
 " Switch system clipboard/internal clipboard
 nnoremap <F11> :let &clipboard=(empty(&clipboard) ? 'unnamedplus' : '')<CR>:echo "clipboard set to '" . &clipboard . "'"<CR>
@@ -118,3 +126,15 @@ nnoremap <F11> :let &clipboard=(empty(&clipboard) ? 'unnamedplus' : '')<CR>:echo
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR><Paste>
