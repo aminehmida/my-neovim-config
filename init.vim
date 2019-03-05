@@ -1,5 +1,9 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'tyrannicaltoucan/vim-quantum'
+
+Plug 'junegunn/goyo.vim'
+
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -37,24 +41,15 @@ if executable('go-langserver')
         \ })
 endif
 
+" Set theme:
+set background=dark
+set termguicolors
+colorscheme quantum
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" colorscheme onehalflight
-" hi Normal ctermbg=none
-" let g:airline_theme='onehalflight'
-
-" YouCompleteMe and UltiSnips compatibility, with the helper of supertab
-" (via http://stackoverflow.com/a/22253548/1626737)
-" let g:SuperTabDefaultCompletionType    = '<C-n>'
-" let g:SuperTabCrMapping                = 0
-" let g:UltiSnipsExpandTrigger           = '<tab>'
-" let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-" let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
-" let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 
 " set leader to ;
 let mapleader=";"
@@ -116,6 +111,16 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+autocmd FileType markdown setlocal textwidth=79
+
+set colorcolumn=80
+autocmd FileType markdown setlocal textwidth=79
+autocmd FileType rst setlocal textwidth=79
+autocmd FileType scala set colorcolumn=101
+
+" Enable mouse:
+set mouse=a
 
 " ctrl-p ripgrep working dir
 nnoremap <C-p> :Rg<Cr>
