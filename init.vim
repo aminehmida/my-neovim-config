@@ -1,8 +1,12 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'scrooloose/nerdtree'
+
 Plug 'tyrannicaltoucan/vim-quantum'
 
 Plug 'junegunn/goyo.vim'
+
+Plug 'derekwyatt/vim-scala'
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -32,6 +36,22 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 call plug#end()
+
+" Configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
+
+" Configuration for vim-lsc
+let g:lsc_enable_autocomplete = v:false
+let g:lsc_server_commands = {
+  \  'scala': {
+  \    'command': 'metals-vim',
+  \    'log_level': 'Log'
+  \  },
+  \  'python': ['pyls', '-v'],
+  \}
+let g:lsc_auto_map = {
+  \  'GoToDefinition': 'gd',
+  \}
 
 if executable('go-langserver')
     au User lsp_setup call lsp#register_server({
@@ -122,9 +142,6 @@ autocmd FileType scala set colorcolumn=101
 " Enable mouse:
 set mouse=a
 
-" ctrl-p ripgrep working dir
-nnoremap <C-p> :Rg<Cr>
-
 " Switch system clipboard/internal clipboard
 nnoremap <F11> :let &clipboard=(empty(&clipboard) ? 'unnamedplus' : '')<CR>:echo "clipboard set to '" . &clipboard . "'"<CR>
 
@@ -143,3 +160,16 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR><Paste>
+
+" Configure indent to use 4 spaces.
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+" ctrl-p ripgrep working dir
+nnoremap <C-p> :Rg<Cr>
+map <C-n> :NERDTreeToggle<CR>
